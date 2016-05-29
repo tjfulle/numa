@@ -6,7 +6,7 @@ PYTHON = python3.5
 PYTEST = py.test
 
 
-build: numa.cpython-35m-darwin.so
+build: _numa.cpython-35m-darwin.so
 
 .PHONY: test
 test:
@@ -18,10 +18,13 @@ test:
 %.o: %.cc
 	$(CXX) -c $(CXXFLAGS) $(CPPFLAGS) $< -o $@
 
+%.o: %.cpp
+	$(CXX) -c $(CXXFLAGS) $(CPPFLAGS) $< -o $@
+
 %.o: %.cxx
 	$(CXX) -c $(CXXFLAGS) $(CPPFLAGS) $< -o $@
 
-numa.cpython-35m-darwin.so:
+_numa.cpython-35m-darwin.so:
 	$(RM) -r numa.cpp build
 	$(PYTHON) setup.py build_ext --inplace
 	$(RM) -r numa.cpp build

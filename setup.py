@@ -4,9 +4,9 @@ from distutils.extension import Extension
 from Cython.Build import cythonize
 from Cython.Distutils import build_ext
 
-files = ['numa.pyx'] + glob.glob('src/*.cc')
+files = ['numa.pyx'] + glob.glob('src/*.cpp')
 setup(
-    name='numa',
-    ext_modules=[Extension('numa', sources=files, language="c++")],
+    name='_numa',
+    ext_modules=[Extension('_numa', sources=files, language="c++")],
     cmdclass={'build_ext': build_ext}
 )

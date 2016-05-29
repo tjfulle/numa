@@ -6,6 +6,5 @@
 *   opposite signs:
 *
 */
-
-double bisect1(double (*f)(double), double A, double B,
-	       double toler, int niter);
+typedef double (*cb_fun)(double);
+double bisect(cb_fun fun, double A, double B, const double toler, const int niter);

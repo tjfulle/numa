@@ -1,5 +1,5 @@
 /*
-*   BISECTION ALGORITHM 2.1
+*   BISECTION ALGORITHM, Burden-Faires Algorithm 2.1
 *
 *   To find a solution to f(x) = 0 given the continuous function
 *   f on the interval [a,b], where f(a) and f(b) have
@@ -10,12 +10,12 @@
 #include <cmath>
 #include <stdexcept>
 #include <string>
-#include "bisect1.h"
+#include "bisect.h"
 
 using namespace std;
+typedef double (*cb_fun)(double);
 
-double bisect1(double (*f)(double), double A, double B,
-               const double toler, const int niter)
+double bisect(cb_fun fun, double A, double B, const double toler, const int niter)
 {
 
   double P, FA, FB, C, FP;
@@ -32,8 +32,8 @@ double bisect1(double (*f)(double), double A, double B,
     throw runtime_error(message);
   }
 
-  FA = (*f)(A);
-  FB = (*f)(B);
+  FA = (*fun)(A);
+  FB = (*fun)(B);
   if (FA * FB > 0.0) {
     string message = "Root not bracketed";
     throw runtime_error(message);
@@ -42,7 +42,7 @@ double bisect1(double (*f)(double), double A, double B,
   for (int i=0; i<=niter; i++) {
     C = (B - A) / 2.0;
     P = A + C;
-    FP = (*f)(P);
+    FP = (*fun)(P);
     if ((fabs(FP) < 1.e-20) || (C < toler)) {
       /* Procedure completed successfully */
       return P;
