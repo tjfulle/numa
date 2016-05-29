@@ -10,7 +10,7 @@
 #include <stdexcept>
 #include <string>
 
-#include "newton_raphson.h"
+#include "newton1.h"
 
 using namespace std;
 typedef double (*cb_fun)(double);
@@ -32,6 +32,6 @@ double newton_raphson(cb_fun fun, cb_fun grad,
   }
 
   /* Root not found */
-  string message = "newton_raphson failed to converge";
+  string message = "newton1 failed to converge";
   throw runtime_error(message);
 }

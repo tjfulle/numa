@@ -16,7 +16,7 @@ cdef double c_bisect_cb(double x):
 # Wrapper for the Fixed Point algortihm
 #
 cdef object py_fixedpt_fun
-cdef extern from "src/fixed_point.h":
+cdef extern from "src/fixpt1.h":
     double fixed_point(double (*fun)(double), double p0,
                        const double toler, const int niter)
 def _fixed_point(fun, p0, double toler=1e-6, int niter=1000):
@@ -31,7 +31,7 @@ cdef double c_fixedpt_cb(double x):
 #
 cdef object py_newtraph_fun
 cdef object py_newtraph_grad
-cdef extern from "src/newton_raphson.h":
+cdef extern from "src/newton1.h":
     double newton_raphson(double (*fun)(double), double (*grad)(double),
                           double p0, const double toler, const int niter)
 def _newton_raphson(fun, grad, p0, double toler=1e-6, int niter=1000):
@@ -49,7 +49,7 @@ cdef double c_newtraph_grad_cb(double x):
 # Wrapper for the Secant Method algortihm
 #
 cdef object py_secant_fun
-cdef extern from "src/secant_method.h":
+cdef extern from "src/secant1.h":
     double secant_method(double (*fun)(double), double p0, double p1,
                          const double toler, const int niter)
 def _secant_method(fun, p0, p1, double toler=1e-6, int niter=1000):

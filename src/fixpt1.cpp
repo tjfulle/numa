@@ -10,7 +10,7 @@
 #include <stdexcept>
 #include <string>
 
-#include "fixed_point.h"
+#include "fixpt1.h"
 
 using namespace std;
 typedef double (*cb_fun)(double);
@@ -25,6 +25,6 @@ double fixed_point(cb_fun fun, double p0, const double toler, const int niter) {
     p0 = p;
   }
   /* Fixed point not found */
-  string message = "fixed_point failed to converge";
+  string message = "fixpt1 failed to converge";
   throw runtime_error(message);
 }

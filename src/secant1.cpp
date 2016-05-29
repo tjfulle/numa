@@ -10,7 +10,7 @@
 #include <stdexcept>
 #include <string>
 
-#include "secant_method.h"
+#include "secant1.h"
 
 using namespace std;
 typedef double (*cb_fun)(double);
@@ -34,6 +34,6 @@ double secant_method(cb_fun fun, double p0, double p1,
     f1 = fp;
   }
   /* Root not found */
-  string message = "secant_method failed to converge";
+  string message = "secant1 failed to converge";
   throw runtime_error(message);
 }
