@@ -1,0 +1,6 @@
+*.o
+*.so
+numa.cpp
+__pycache__
+.cache
+JunkDrawer
