@@ -9,7 +9,7 @@
 *            number x; values of f as the first column of Q
 *            or may be computed if function f is supplied.
 *
-*   OUTPUT:  the table Q with P(x) = Q(N+1,N+1). 
+*   OUTPUT:  the table Q with P(x) = Q(N+1,N+1).
 */
 
 #include<stdio.h>
@@ -21,7 +21,7 @@ double F(double);
 void INPUT(int *, double *, double [][26], double *, int *);
 void OUTPUT(int, double, double *, double [][26]);
 
-main()
+int main()
 {
    double Q[26][26],XX[26],D[26];
    double X;
@@ -33,9 +33,9 @@ main()
       D[0] = X - XX[0];
       for (I=1; I<=N; I++) {
          D[I] = X - XX[I];
-         for (J=1; J<=I; J++) 
-            Q[I][J] = (D[I] * Q[I-1][J-1] - D[I-J] * 
-                      Q[I][J-1]) / (D[I] - D[I-J]); 
+         for (J=1; J<=I; J++)
+            Q[I][J] = (D[I] * Q[I-1][J-1] - D[I-J] *
+                      Q[I][J-1]) / (D[I] - D[I-J]);
       }
       /* STEP 2 */
       OUTPUT(N, X, XX, Q);
@@ -46,7 +46,7 @@ main()
 /* Change F if program is to calculate the first column of Q */
 double F(double X)
 {
-   double f; 
+   double f;
 
    f =  1.0/X;
    return f;
@@ -57,7 +57,7 @@ void INPUT(int *OK, double *XX, double Q[][26], double *X, int *N)
    int I, FLAG;
    char A;
    char NAME[30];
-   FILE *INP; 
+   FILE *INP;
 
    printf("This is Nevilles Method.\n");
    *OK = false;
@@ -73,7 +73,7 @@ void INPUT(int *OK, double *XX, double Q[][26], double *X, int *N)
    switch (FLAG) {
       case 1:
          *OK = false;
-         while (!(*OK)) { 
+         while (!(*OK)) {
             printf("Input n\n");
             scanf("%d", N);
             if (*N > 0) {
@@ -102,7 +102,7 @@ void INPUT(int *OK, double *XX, double Q[][26], double *X, int *N)
                printf("Input n\n");
                scanf("%d", N);
                if (*N > 0) {
-                  for (I=0; I<=*N; I++) 
+                  for (I=0; I<=*N; I++)
                      fscanf(INP, "%lf %lf", &XX[I], &Q[I][0]);
                   fclose(INP);
                   *OK = true;
@@ -146,7 +146,7 @@ void INPUT(int *OK, double *XX, double Q[][26], double *X, int *N)
             printf("can be created.\n");
             *OK = false;
          }
-         break; 
+         break;
    }
    if (*OK) {
       printf("Input the point at which the polynomial is to be ");
@@ -177,7 +177,7 @@ void OUTPUT(int N, double X, double *XX, double Q[][26])
    fprintf(OUP, "NEVILLES METHOD\n");
    fprintf(OUP, "Table for P evaluated at X = %12.8f follows: \n", X);
    fprintf(OUP, "Entries are XX(I), Q(I,0), ..., Q(I,I) ");
-   fprintf(OUP, "for each I = 0, ..., N where N = %3d\n\n", N); 
+   fprintf(OUP, "for each I = 0, ..., N where N = %3d\n\n", N);
    for (I=0; I<=N; I++) {
       fprintf(OUP, "%11.8f ", XX[I]);
       for (J=0; J<=I; J++) fprintf(OUP, "%11.8f ", Q[I][J]);

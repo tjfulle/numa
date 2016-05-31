@@ -4,3 +4,5 @@ numa.cpp
 __pycache__
 .cache
 JunkDrawer
+a.out
+foo.*
